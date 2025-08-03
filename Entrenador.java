@@ -35,5 +35,16 @@ public class Entrenador
         return rondasGanadas;
     }
 
+    public void seleccionarPokemon()
+    {
+        // Lógica para seleccionar un Pokémon del equipo del entrenador
+        // Por ejemplo, podrías elegir el primer Pokémon disponible
+        if (!Pokemones.isEmpty()) {
+            Pokemon pokemonSeleccionado = Pokemones.get(0);
+            System.out.println(nombre + " ha seleccionado a " + pokemonSeleccionado.getNombre());
+        } else {
+            System.out.println(nombre + " no tiene Pokémon disponibles.");
+        }
+    }
    
 }

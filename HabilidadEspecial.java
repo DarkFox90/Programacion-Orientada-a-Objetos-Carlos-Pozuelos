@@ -7,12 +7,12 @@ public class HabilidadEspecial
     private int Valor;
     private int probabilidad;
 
-    public HabilidadEspecial(String nombre, String efecto, int valor, int probabilidad) 
+    public HabilidadEspecial(String nombre, String efecto, int valor) 
     {
         this.nombre = nombre;
         this.efecto = efecto;
         this.Valor = valor;
-        this.probabilidad = probabilidad;
+        this.probabilidad = generarProbabilidad();
     }
 
     public String getNombre() 
