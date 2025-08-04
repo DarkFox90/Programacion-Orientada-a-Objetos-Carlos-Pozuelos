@@ -15,6 +15,11 @@ public class HabilidadEspecial
         this.probabilidad = generarProbabilidad();
     }
 
+    private int generarProbabilidad() {
+        Random random = new Random();
+        return random.nextInt(100) + 1;
+    }
+
     public String getNombre() 
     {
         return nombre;
@@ -49,6 +54,20 @@ public class HabilidadEspecial
             return false; // La habilidad no se activa
         }
     }
-    
-    
+
+    public void aplicarEfecto(Pokemon propio, Pokemon rival)
+    {
+        switch (efecto.toLowerCase())
+        {
+            case "ataque":
+                propio.modificarAtaque(Valor);
+                break;
+            case "defensa":
+                propio.modificarDefensa(Valor);
+                break;
+            case "daño":
+                rival.modificarAtaque(-Valor);
+                break;
+        }
+    }
 }

@@ -1,14 +1,24 @@
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) 
     {
         Scanner scanner = new Scanner(System.in);
 
-        List<Pokemon> pokedex = new ArrayList<>();
-        pokedex.add(new Pokemon("Pikachu", "Eléctrico", 55, 40, new HabilidadEspecial("Impactrueno", "Ataque eléctrico", 40, )));
+        System.out.print("Ingrese el nombre del Entrenador 1: ");
+        String nombre1 = scanner.nextLine();
+        Entrenador e1 = new Entrenador(nombre1);
+
+        System.out.print("Ingrese el nombre del Entrenador 2: ");
+        String nombre2 = scanner.nextLine();
+        Entrenador e2 = new Entrenador(nombre2);
+
+        List<Pokemon> pokedex = crearPokedex();
+
+        for (int i = 0; i < 4; i++)
+        {
+            
+        }
         
     }
 }
