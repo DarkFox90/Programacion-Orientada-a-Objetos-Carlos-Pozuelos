@@ -1,92 +1,38 @@
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
-public class Entrenador
-{
+public class Entrenador {
     private String nombre;
-    private List<Pokemon> pokemones;
-    private List<Pokemon> pokemonesUsados;
-    private int rondasGanadas;
+    private String especialidad;
+    private ArrayList<Miembro> miembros;
 
-    public Entrenador(String nombre) 
-    {
+    public Entrenador(String nombre, String especialidad, ArrayList<Miembro> miembros) { //cambié un parametro por el arraylist para que hiciera sentido crear un entrendor
         this.nombre = nombre;
-        this.pokemones = new ArrayList<>();
-        this.pokemonesUsados = new ArrayList<>();
-        this.rondasGanadas = 0;
+        this.especialidad = especialidad;
+        this.miembros = new ArrayList<>();
     }
 
-    public String getNombre()
-    {
+    public String getNombre() {
         return nombre;
     }
 
-    public List<Pokemon> getPokemones()
-    {
-        return pokemones;
+    public String getEspecialidad() {
+        return especialidad;
     }
 
-    public List<Pokemon> getPokemonesUsados()
-    {
-        return pokemonesUsados;
-    }
-
-    public int getRondasGanadas()
-    {
-        return rondasGanadas;
-    }
-
-    public void ganarRonda()
-    {
-        rondasGanadas++;
+    public ArrayList<Miembro> getMiembros() {
+        return miembros;
     }
 
 
-    public void agregarPokemon(Pokemon p)
-    {
-        if (pokemones.size() < 4)
-        {
-            pokemones.add(p);
+    public void asignarMiembro(Miembro miembro) { //cambie alumno por miembro para evitar confusión 
+        miembros.add(miembro);
+    }
+
+    public boolean eliminarMiembro(Miembro miembro) {
+        if (miembros.remove(miembro)) {
+            return true;
+        } else {
+            return false;
         }
-    }
-
-    public Pokemon seleccionarPokemon(Scanner scanner)
-    {
-        List <Pokemon> disponibles = new ArrayList<>();
-        for (Pokemon p : pokemones)
-        {
-            if (!pokemonesUsados.contains(p))
-            {
-                disponibles.add(p);
-            }
-        }
-
-        System.out.println("pokemones disponibles para " + nombre + ":");
-        for (int i = 0; i < disponibles.size(); i++)
-        {
-            System.out.println(i + ". " + disponibles.get(i).getNombre());
-        }
-        
-           int opcion = -1;
-        boolean valido = false;
-        while (!valido) {
-            System.out.print("Selecciona el índice del Pokémon: ");
-            if (scanner.hasNextInt()) {
-                opcion = scanner.nextInt();
-                if (opcion >= 0 && opcion < disponibles.size()) {
-                    valido = true;
-                } else {
-                    System.out.println("Índice fuera de rango.");
-                }
-            } else {
-                System.out.println("Entrada inválida.");
-                scanner.next();
-            }
-        }
-
-        Pokemon elegido = disponibles.get(opcion);
-        pokemonesUsados.add(elegido);
-        return elegido;
     }
 }
