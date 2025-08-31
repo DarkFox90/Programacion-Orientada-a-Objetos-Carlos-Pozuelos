@@ -3,11 +3,14 @@ public class Miembro {
     private String membresia;
     private Entrenador entrenador;
     private Rutina rutina;
+    private static int nextId = 1;
+    private final int id;
 
     public Miembro(String nombre, String membresia, Rutina rutina) {
         this.nombre = nombre;
         this.membresia = membresia;
         this.rutina = rutina;
+        this.id = nextId++;
     }
 
     public String getNombre() {
@@ -24,6 +27,14 @@ public class Miembro {
 
     public Rutina getRutina() {
         return rutina;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setRutina(Rutina rutina) {
+        this.rutina = rutina;
     }
 
     //agregué un to string para que me aparezca a la hora de hacer sysout a la información
