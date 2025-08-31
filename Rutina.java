@@ -18,13 +18,14 @@ public class Rutina {
         return nombre;
     }
 
-    
 
+    //agruegé un toString para poder imprimir en pantalla de manera correcta las rutinas elegidas por las personas
      public String toString() {
         return nombre + '\'' +
                ", tipo='" + tipo + '\'';
                
     }
-}
 
+    //no hice la funcion agregarEjercicio por cuestiones de tiempo
+}
 
