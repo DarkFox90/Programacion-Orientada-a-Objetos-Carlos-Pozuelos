@@ -3,7 +3,7 @@
  * Programacion Orientada a Objetos
  * Ejercicio 3: sistema de organización de gimnasios
  * fecha de creación: 30 de agosto de 2025
- * ultima modificación: 31 de agosto de 2025
+ * ultima modificación: 1 de septiembre de 2025
  */
 
 import java.util.ArrayList;
@@ -12,11 +12,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Gimnasio gimnasio = new Gimnasio();
-        Controlador controlador = new Controlador(gimnasio);
+        Gimnasio gimnasio = new Gimnasio(); //inicialicé un gimnasio en main para poder ir metiendo los valores de miembros y entrenadores a las listas creadas en la clase Gimnasio
+        Controlador controlador = new Controlador(gimnasio); //inicialicé un controlador
 
         int opcion;
-
+        //ciclo do while para poder utilizar scanner de manera correcta
         do { 
             System.out.println("1. registrar un miembro");
             System.out.println("2. registrar un entrenador");
@@ -42,7 +42,7 @@ public class Main {
                     String nombreRutina = scanner.nextLine();
 
                     Rutina rutina = new Rutina(tipoRutina, nombreRutina);
-                    Miembro miembro = new Miembro(nombre, membresia, rutina);
+                    Miembro miembro = new Miembro(nombre, membresia, rutina); //miembro y rutina son creados con las variables que scanner guarda
 
                     gimnasio.agregarMiembro(miembro);
 
@@ -61,6 +61,7 @@ public class Main {
 
                     System.out.println("que miembros desea agregar al entrenador? ");
 
+                    //cree una arrayList para poder ver otra vez los miembros junto con el índice para elegir el coach
                     ArrayList<Miembro> todos = controlador.verMiembros();
                     if (todos.isEmpty()){
                         System.out.println("no hay miembros inscritos");
@@ -72,32 +73,35 @@ public class Main {
                     }
 
                     int opcion2 = 0;
-
+                    
+                    //while loop que permite ir agregando un miembro a cada coach que se vaya creando y se termina hasta que el usuario presione -1
                     while (opcion2 != 1) {
                         System.out.println("ingrese el id del miembro que desea asignar a un entrenador (presione -1 para acabar): ");
                         int idMiembro = scanner.nextInt();
                         scanner.nextLine();
 
                         if (idMiembro == -1) {
-                            opcion2 = 1;
                             
+                            break;
                         }
-
-                       
+                        
+                        //aquí se chequea que exista el id del miembro
+                        Miembro mi = controlador.buscarMiembroPorId(idMiembro);
+                        if(mi == null) {
+                            System.out.println("id no encontrado");
+                            break;
+                        }
+                        
+                        //si si existe el id se asigna el miembro al entrenador
+                        boolean asignado = entrenador.asignarMiembro(mi);
+                        if (asignado) {
+                            System.out.println(mi.getNombre() + " asignado a " + nombreEn);
+                        } else {
+                            System.out.println("no se pudo asignar");
+                        }
                     }
-                    Miembro mi = controlador.buscarMiembroPorId(idMiembro);
-                    if(mi == null) {
-                        System.out.println("id no encontrado");
-                        continue;
-                    }
-
-                    boolean asignado = entrenador.asignarMiembro(mi);
-                    if (asignado) {
-                        System.out.println(mi.getNombre() + " asignado a " + nombreEn);
-                    } else {
-                        System.out.println("no se pudo asignar");
-                    }
-                
+                    
+                    //aqui se agrega el entrenador junto con su miembro al gimnasio
                     gimnasio.agregarEntrenador(entrenador);
                     System.out.println("entrenador registrado");
                     break;
@@ -105,6 +109,8 @@ public class Main {
 
 
                 case 3:
+
+                //aqui cree 2 listas para poder imprimir en pantalla los miembros y los entrenadores. esto es mediante un for que va recorriendo la lista y va imprimiendo cada miembro que encuentra
                     ArrayList<Miembro> lista = controlador.verMiembros();
                     if (lista.isEmpty()) {
                         System.out.println("no hay miembros inscritos");
@@ -130,8 +136,10 @@ public class Main {
                     int id = scanner.nextInt();
                     scanner.nextLine();
 
+                    //aqui se inicializa un objeto llamado objetivo de tipo Miembro que es necesario para poder añadirle la nueva rutina utilizando el metodo buscarMiemrboPorID
                     Miembro objetivo = controlador.buscarMiembroPorId(id);
 
+                    //aqui se inicializa una nueva rutina cada vez que el usuario decida modificar la rutina, los nuevos parametros se añaden al constructor de rutina y tilizando el setRutina se asignan al miembro.
                     if (objetivo != null) {
                         System.out.println("ingrese el tipo de rutina (bajar peso, aumentar músculo, resistencia): ");
                         String nuevoTipo = scanner.nextLine();
@@ -161,5 +169,3 @@ public class Main {
         } while (opcion != 6);
     }
 }
-
-
