@@ -23,8 +23,7 @@ public class Entrenador {
         return miembros;
     }
 
-
-    public void asignarMiembro(Miembro miembro) { //cambie alumno por miembro para evitar confusión 
+  public void asignarMiembro(Miembro miembro) { //cambie alumno por miembro para evitar confusión 
         miembros.add(miembro);
     }
 
@@ -36,3 +35,4 @@ public class Entrenador {
         }
     }
 }
+
