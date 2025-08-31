@@ -1,15 +1,13 @@
-import java.util.ArrayList;
+//eliminé el atributo de ejercicio ya que me hacía conflicto a la hora de crear una rutina
 
 public class Rutina {
     private String tipo;
     private String nombre;
-    private ArrayList<String> ejercicios;
 
 
     public Rutina(String tipo, String nombre) {
         this.tipo = tipo;
         this.nombre = nombre;
-        this.ejercicios = new ArrayList<>();
     }
 
     public String getTipo() {
@@ -20,13 +18,11 @@ public class Rutina {
         return nombre;
     }
 
-    public ArrayList<String> getEjercicios() {
-        return ejercicios;
+     public String toString() {
+        return nombre + '\'' +
+               ", tipo='" + tipo + '\'';
+               
     }
-
-    //cambié el tipo de ejercicio porque no tengo ninguna clase llamada Ejercicio
-    public void agregarEjercicio(String ejercicio) {
-        ejercicios.add(ejercicio);
-    }
-    
 }
+
+
