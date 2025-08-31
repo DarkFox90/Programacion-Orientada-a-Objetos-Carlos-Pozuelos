@@ -18,6 +18,8 @@ public class Rutina {
         return nombre;
     }
 
+    
+
      public String toString() {
         return nombre + '\'' +
                ", tipo='" + tipo + '\'';
