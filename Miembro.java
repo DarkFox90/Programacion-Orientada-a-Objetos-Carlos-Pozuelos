@@ -4,10 +4,9 @@ public class Miembro {
     private Entrenador entrenador;
     private Rutina rutina;
 
-    public Miembro(String nombre, String membresia, Entrenador entrenador, Rutina rutina) {
+    public Miembro(String nombre, String membresia, Rutina rutina) {
         this.nombre = nombre;
         this.membresia = membresia;
-        this.entrenador = entrenador;
         this.rutina = rutina;
     }
 
@@ -25,6 +24,14 @@ public class Miembro {
 
     public Rutina getRutina() {
         return rutina;
+    }
+
+    //agregué un to string para que me aparezca a la hora de hacer sysout a la información
+    public String toString() {
+        return "Miembro: " +
+               "nombre='" + nombre + '\'' +
+               ", membresia= '" + membresia + '\'' +
+               "   rutina: " + rutina;
     }
 
     
