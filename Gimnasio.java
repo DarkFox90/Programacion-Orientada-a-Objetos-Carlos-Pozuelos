@@ -11,6 +11,7 @@ public class Gimnasio {
         this.rutinas = new ArrayList<>();
     }
 
+    //funciones que agregan todos los miembros, entrenadores y rutinas a las listas correspondientes que componen el gimnasio
     public void agregarMiembro(Miembro miembro){
         miembrosActivos.add(miembro);
     }
@@ -23,6 +24,7 @@ public class Gimnasio {
         rutinas.add(rutina);
     }
 
+    //añadí getters para poder utilizarlos en main y controlador
    public ArrayList<Miembro> getMiembrosActivos() {
         return miembrosActivos;
    }
