@@ -17,5 +17,37 @@ public class Controlador {
         return gimnasio.getEntrenadoresActivos();
     }
 
+    //agregué esta función para poder buscar mimbros por ID y así poder añadirles las rutinas
+    public Miembro buscarMiembroPorId(int id) {
+        for (Miembro m : verMiembros()) {
+            if (m.getId() == id) {
+                return m;
+            }
+        } return null;
+    }
+
+    //agruegé esta funcion para poder buscar entrenadores por ID y poder asignarlos a los miembros
+    public Entrenador buscarEntrenadorPorID(int id) {
+        for (Entrenador e : verEntrenadores()) {
+            if (e.getId() == id){
+                return e;
+            }
+        }return null;
+    }
+
+    //cambié el retorno de void a boolean para poder utilizarlo en main
+    public boolean agregarMiembroAEntrenador(int idEntrenador, int idMiembro) {
+        Entrenador e = buscarEntrenadorPorID(idEntrenador);
+        Miembro m = buscarMiembroPorId(idMiembro);
+
+        if(e == null || m == null){
+            return false;
+        } return e.asignarMiembro(m);
+    }
+
+
+
     
 }
+
+
