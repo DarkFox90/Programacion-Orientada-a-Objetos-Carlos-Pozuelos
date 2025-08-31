@@ -61,41 +61,98 @@ public class Main {
 
                     System.out.println("que miembros desea agregar al entrenador? ");
 
+                    ArrayList<Miembro> todos = controlador.verMiembros();
+                    if (todos.isEmpty()){
+                        System.out.println("no hay miembros inscritos");
+                    } else {
+                        System.out.println("miembros: ");
+                        for(Miembro m : todos) {
+                            System.out.println(" id " + m.getId() + m.getNombre());
+                        }
+                    }
+
+                    int opcion2 = 0;
+
+                    while (opcion2 != 1) {
+                        System.out.println("ingrese el id del miembro que desea asignar a un entrenador (presione -1 para acabar): ");
+                        int idMiembro = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if (idMiembro == -1) {
+                            opcion2 = 1;
+                            
+                        }
+
+                       
+                    }
+                    Miembro mi = controlador.buscarMiembroPorId(idMiembro);
+                    if(mi == null) {
+                        System.out.println("id no encontrado");
+                        continue;
+                    }
+
+                    boolean asignado = entrenador.asignarMiembro(mi);
+                    if (asignado) {
+                        System.out.println(mi.getNombre() + " asignado a " + nombreEn);
+                    } else {
+                        System.out.println("no se pudo asignar");
+                    }
+                
+                    gimnasio.agregarEntrenador(entrenador);
+                    System.out.println("entrenador registrado");
+                    break;
+
+
+
+                case 3:
                     ArrayList<Miembro> lista = controlador.verMiembros();
                     if (lista.isEmpty()) {
                         System.out.println("no hay miembros inscritos");
                     } else {
                         for (Miembro m : lista) {
-                            System.out.println(m);
+                            System.out.println(m + "id: " + m.getId() + "\n");
                         }
                     }
-                    
-                    String miembroA = scanner.nextLine();
-                    if (miembroA.equals(miembro.getNombre())) {
-                        miembroA.asignarMiembro();
-                    }
-                    
 
-                    break;
-                case 3:
-                    ArrayList<Miembro> lista2 = controlador.verMiembros();
+                    ArrayList<Entrenador> lista2 = controlador.verEntrenadores();
                     if (lista2.isEmpty()) {
-                        System.out.println("no hay miembros inscritos");
+                        System.out.println("no hay entrenadores");
                     } else {
-                        for (Miembro m : lista2) {
-                            System.out.println(m);
+                        for (Entrenador e : lista2) {
+                            System.out.println(e + "id: " + e.getId());
                         }
                     }
                     break;
+
+
                 case 4:
-                    System.out.println("Opción 4 seleccionada");
-                    // Acción para la opción 4
+                    System.out.println("que miembro desea modificar (id del miembro)? ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+
+                    Miembro objetivo = controlador.buscarMiembroPorId(id);
+
+                    if (objetivo != null) {
+                        System.out.println("ingrese el tipo de rutina (bajar peso, aumentar músculo, resistencia): ");
+                        String nuevoTipo = scanner.nextLine();
+
+                        System.out.println("ingrese el nombre de la rutina nueva: ");
+                        String nuevoNommbre = scanner.nextLine();
+
+                        Rutina nuevaRutina = new Rutina(nuevoTipo, nuevoNommbre);
+                        objetivo.setRutina(nuevaRutina);
+
+                        System.out.println("rutina actualizada exitosamente para: " + objetivo.getNombre());
+                    } else {
+                        System.out.println("no existe ningun miembro con ese ID");
+                    }
+
                     break;
                 case 5:
                     System.out.println("ddd");
                     break;
                 case 6:
-                    System.out.println("Saliendo del programa...");
+                    System.out.println("gracias por usar el programa");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
@@ -104,3 +161,5 @@ public class Main {
         } while (opcion != 6);
     }
 }
+
+
